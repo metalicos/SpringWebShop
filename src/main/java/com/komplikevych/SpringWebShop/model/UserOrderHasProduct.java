@@ -1,19 +1,23 @@
 package com.komplikevych.SpringWebShop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class UserOrderHasProduct implements Serializable {
+
     @Id
     @ManyToOne
     private UserOrder userOrder;
@@ -25,11 +29,4 @@ public class UserOrderHasProduct implements Serializable {
     private Integer productAmount;
 
     private BigDecimal price;
-
-    @CreationTimestamp
-    private LocalDateTime createdTime;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedTime;
-
 }

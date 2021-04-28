@@ -1,31 +1,32 @@
 package com.komplikevych.SpringWebShop.model;
 
 import com.komplikevych.SpringWebShop.model.enums.Color;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class ProductDetail extends AbstractEntity {
+public class ProductDetail {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(length = 500)
     private String brand;
-
-    private Double heightMm;
-    private Double widthMm;
-    private Double lengthMm;
 
     @Enumerated(EnumType.ORDINAL)
     private Color color;
 
+    @Column(length = 5000)
     private String about;
-
-    private Integer warrantyInDays;
 
     @OneToOne
     private Product product;
